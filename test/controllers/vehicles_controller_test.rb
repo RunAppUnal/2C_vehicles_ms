@@ -12,7 +12,7 @@ class VehiclesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create vehicle" do
     assert_difference('Vehicle.count') do
-      post vehicles_url, params: { vehicle: { brand: @vehicle.brand, capacity: @vehicle.capacity, class: @vehicle.class, color: @vehicle.color, image: @vehicle.image, model: @vehicle.model, plate: @vehicle.plate, user_id: @vehicle.user_id } }, as: :json
+      post vehicles_url, params: { vehicle: { brand: @vehicle.brand, capacity: @vehicle.capacity, color: @vehicle.color, image: @vehicle.image, kind: @vehicle.kind, model: @vehicle.model, plate: @vehicle.plate, user_id: @vehicle.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class VehiclesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update vehicle" do
-    patch vehicle_url(@vehicle), params: { vehicle: { brand: @vehicle.brand, capacity: @vehicle.capacity, class: @vehicle.class, color: @vehicle.color, image: @vehicle.image, model: @vehicle.model, plate: @vehicle.plate, user_id: @vehicle.user_id } }, as: :json
+    patch vehicle_url(@vehicle), params: { vehicle: { brand: @vehicle.brand, capacity: @vehicle.capacity, color: @vehicle.color, image: @vehicle.image, kind: @vehicle.kind, model: @vehicle.model, plate: @vehicle.plate, user_id: @vehicle.user_id } }, as: :json
     assert_response 200
   end
 

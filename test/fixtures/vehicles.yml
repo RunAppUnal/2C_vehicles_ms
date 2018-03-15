@@ -3,7 +3,7 @@
 one:
   plate: MyString
   user_id: 1
-  class: MyString
+  kind: MyString
   model: 1
   color: MyString
   capacity: 1
@@ -13,7 +13,7 @@ one:
 two:
   plate: MyString
   user_id: 1
-  class: MyString
+  kind: MyString
   model: 1
   color: MyString
   capacity: 1

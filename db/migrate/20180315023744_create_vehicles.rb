@@ -3,7 +3,7 @@ class CreateVehicles < ActiveRecord::Migration[5.1]
     create_table :vehicles do |t|
       t.string :plate
       t.integer :user_id
-      t.string :class
+      t.string :kind
       t.integer :model
       t.string :color
       t.integer :capacity
