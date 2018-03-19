@@ -13,4 +13,22 @@ class Vehicle < ApplicationRecord
     validates_format_of :brand, with: /[a-zA-Z0-9 ]+/, message: 'debe ser válido (ej: Renault, Mazda).'
     validates_format_of :color, with: /[a-zA-Z ]+/, message: 'debe ser válido (ej: Rojo, Negro).'
     #-------------------------------------------------------------------------
+
+    def self.myVehicles(user)
+        Vehicle.where(:user_id => user).all
+    end
+
+    def self.findVehicle(plate)
+        Vehicle.where(:plate => plate)
+    end
+
+    def self.countMyVehicles(user)
+        Vehicle.where(:user_id => user).count
+    end    
+    
+    def self.totalVehicles()
+        Vehicle.count
+    end
+
+
 end

@@ -38,6 +38,19 @@ class VehiclesController < ApplicationController
     @vehicle.destroy
   end
 
+  def my_vehicles
+    render json: Vehicle.myVehicles(params[:user_id])
+  end
+  def find_vehicle
+    render json: Vehicle.findVehicle(params[:plate])
+  end
+  def count_my_vehicles
+    render json: Vehicle.countMyVehicles(params[:user_id])
+  end
+  def total_vehicles
+    render json: Vehicle.totalVehicles()
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vehicle
