@@ -8,10 +8,10 @@ private
 
   def update_count
   	self.count = 0
-    self.count += 1 if self.polyline1.present?
-    self.count += 1 if self.polyline2.present?
-    self.count += 1 if self.polyline3.present?
-    self.count += 1 if self.polyline4.present?
-    self.count += 1 if self.polyline5.present?
+    self.count += 1 if self.polyline1 != '' and self.polyline1.present?
+    self.count += 1 if self.polyline2 != '' and self.polyline2.present?
+    self.count += 1 if self.polyline3 != '' and self.polyline3.present?
+    self.count += 1 if self.polyline4 != '' and self.polyline4.present?
+    self.count += 1 if self.polyline5 != '' and self.polyline5.present?
   end
 end
