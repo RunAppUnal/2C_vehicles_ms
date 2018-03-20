@@ -7,7 +7,7 @@ info:
   description: Ruby + MySQL
   license:
     name: Software Architecture 2018-I
-host: 192.168.99.102:6005
+host: 192.168.99.103:6005
 basePath: /
 schemes:
   - http
