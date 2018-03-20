@@ -3,7 +3,7 @@ services:
   vehicles-db:
     image: mysql
     ports:
-      - "3309:3306"
+      - "7005:3306"
     environment:
       MYSQL_ROOT_PASSWORD: 123
       MYSQL_USER: arquisoft
@@ -12,8 +12,8 @@ services:
       MYSQL_HOST: vehicles-db
   vehicles-ms:
     build: .
-    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 4003 -b '0.0.0.0'"
+    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 6005 -b '0.0.0.0'"
     ports:
-      - "4003:4003"
+      - "6005:6005"
     depends_on:
       - vehicles-db
