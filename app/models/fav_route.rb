@@ -4,6 +4,11 @@ class FavRoute < ApplicationRecord
 	validates :user_id, presence: true
     validates :count, numericality: { :less_than_or_equal_to => 5, message: 'Solo se pueden agregar 5 rutas favoritas.' }
 
+
+  def self.myFavRoutes(user)
+    FavRoute.where(:user_id => user).all
+  end
+
 private
 
   def update_count

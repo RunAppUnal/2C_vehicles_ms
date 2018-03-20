@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :fav_routes
+  resources :fav_routes do
+    collection do
+      get :my_favRoutes
+    end
+  end
+
   resources :vehicles do
   	collection do
   		get :my_vehicles

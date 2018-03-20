@@ -38,6 +38,10 @@ class FavRoutesController < ApplicationController
     @fav_route.destroy
   end
 
+  def my_favRoutes
+    render json: FavRoute.myFavRoutes(params[:user_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fav_route
