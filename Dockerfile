@@ -8,3 +8,5 @@ ADD Gemfile.lock /vehicles-ms/Gemfile.lock
 
 RUN bundle install
 ADD . /vehicles-ms
+
+EXPOSE 6005
