@@ -1,24 +1,29 @@
-# README
+2C_vehicle_ms
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Montar servicio a docker
 
-Things you may want to cover:
+Ejecutar las siguientes instucciones:
 
-* Ruby version
+1. Subir la bd a rancher e inicializarla:
 
-* System dependencies
+`docker-compose up`
 
-* Configuration
+2. Subir el programa a Rancher
 
-* Database creation
+`docker build -t vehicle-ms .`
 
-* Database initialization
+3. Iniciar el programa
 
-* How to run the test suite
+`docker run --name vehicle-ms -p 6004:6004 vehicle-ms`
 
-* Services (job queues, cache servers, search engines, etc.)
+**Aclaración:** Los comandos se deben ejecutar desde la terminal, en la ruta del proyecto (1. en una terminal y 2.,3. desde otra terminal).
 
-* Deployment instructions
+### Ejecutar los microservicios
 
-* ...
+1. Ejecutar microservicio vehicle-db
+
+`docker start vehicle-db`
+
+2. Ejecutar microservicio vehicle-ms
+
+`docker start vehicle-ms`

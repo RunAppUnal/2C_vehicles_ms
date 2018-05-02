@@ -1,19 +1,21 @@
 version: '2'
 services:
-  vehicles-db:
-    image: mysql
+
+  mongodb:
+    image: mongo:latest
+    container_name: vehicle-db
     ports:
-      - "7005:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: 123
-      MYSQL_USER: arquisoft
-      MYSQL_PASSWORD: 123
-      MYSQL_DATABASE: vehicles
-      MYSQL_HOST: vehicles-db
-  vehicles-ms:
-    build: .
-    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 6005 -b '0.0.0.0'"
-    ports:
-      - "6005:6005"
-    depends_on:
-      - vehicles-db
+      - "27017:27017"
+    volumes:
+      - "mongodata:/data/2C_vehicle_db"
+    networks:
+      - vehicle-db
+
+
+
+
+volumes:
+   mongodata:
+
+networks:
+  vehicle-db:
