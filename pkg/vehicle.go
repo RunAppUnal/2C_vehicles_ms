@@ -2,6 +2,7 @@ package root
 
 type Vehicle struct {
   ID          uint64        `json:"_id"`
+  VehicleId          uint64        `json:"id"`
   //VehicleId   uint64        `json:"vehicleid"`
 	Plate       string        `json:"plate"`
 	UserId      uint64        `json:"user_id"`
@@ -14,9 +15,9 @@ type Vehicle struct {
 }
 
 type VehicleService interface {
-  CreateVehicle(v *Vehicle) error
+  CreateVehicle(v *Vehicle) (*Vehicle,error)
   GetById(vehicleid int) (*Vehicle,error)
-  GetByPlate(plate string) (*Vehicle,error)
+  GetByPlate(plate string) ([]*Vehicle,error)
   DeleteById(vehicleid int) error
   UpdateById(vehicleid int, v *Vehicle) (*Vehicle,error)
   GetAll() ([]*Vehicle,error)

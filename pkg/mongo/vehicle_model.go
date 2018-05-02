@@ -9,6 +9,7 @@ import (
 
 type vehicleModel struct {
   ID          uint64         `bson:"_id" json:"_id"`//bson.ObjectId `bson:"_id,omitempty" json:"id,omitempty"`
+  VehicleId          uint64         `bson:"id" json:"id"`
   //VehicleId   uint64        `bson:"vehicleid" json:"vehicleid"`
 	Plate       string        `bson:"plate" json:"plate"`
 	UserId      uint64        `bson:"user_id" json:"user_id"`
@@ -32,7 +33,7 @@ func vehicleModelIndex() mgo.Index {
 
 func newVehicleModel(v *root.Vehicle) *vehicleModel {
   return &vehicleModel{
-    //VehicleId:   v.VehicleId,
+    VehicleId:   v.VehicleId,
     Plate:       v.Plate,
   	UserId:      v.UserId,
   	Kind:        v.Kind,
@@ -46,6 +47,7 @@ func newVehicleModel(v *root.Vehicle) *vehicleModel {
 func updateVehicleModel(v *root.Vehicle) *vehicleModel {
   return &vehicleModel{
     ID:          v.ID,
+    VehicleId:   v.VehicleId,
     Plate:       v.Plate,
   	UserId:      v.UserId,
   	Kind:        v.Kind,
@@ -59,7 +61,7 @@ func updateVehicleModel(v *root.Vehicle) *vehicleModel {
 func(v *vehicleModel) toRootVehicle() *root.Vehicle {
   return &root.Vehicle{
     ID:          v.ID,
-    //VehicleId:   v.VehicleId,
+    VehicleId:   v.VehicleId,
     Plate:       v.Plate,
   	UserId:      v.UserId,
   	Kind:        v.Kind,

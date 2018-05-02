@@ -20,7 +20,7 @@ func NewVehicleService(session *Session, dbName string, collectionName string) *
 	return &VehicleService{collection}
 }
 
-func (p *VehicleService) CreateVehicle(v *root.Vehicle) error {
+func (p *VehicleService) CreateVehicle(v *root.Vehicle) (*root.Vehicle, error) {
 	vehicle := newVehicleModel(v)
 
 	// connect AutoIncrement to collection "vehicles"
@@ -31,8 +31,9 @@ func (p *VehicleService) CreateVehicle(v *root.Vehicle) error {
   ai.Connect(session.DB("2C_vehicle_db").C("vehicle"))
 	//vehicle.VehicleId = ai.Next("vehicle")
 	vehicle.ID = ai.Next("vehicle")
-
-	return p.collection.Insert(&vehicle)
+	vehicle.VehicleId = vehicle.ID
+	err = p.collection.Insert(&vehicle)
+	return vehicle.toRootVehicle(), err
 }
 
 func (p *VehicleService) DeleteById(id int)  error{
@@ -60,10 +61,22 @@ func (p *VehicleService) GetAll() ([]*root.Vehicle, error){
 	return salida, err
 }
 
-func (p *VehicleService) GetByPlate(plate string) (*root.Vehicle, error) {
-	model := vehicleModel{}
-	err := p.collection.Find(bson.M{"plate": plate}).One(&model)
-	return model.toRootVehicle(), err
+func (p *VehicleService) GetByPlate(plate string) ([]*root.Vehicle, error) {
+	model := []vehicleModel{}
+	var salida []*root.Vehicle
+  err := p.collection.Find(bson.M{"plate": plate}).All(&model)
+	aux := vehicleModel{}
+	log.Println("------------->")
+	log.Println(plate, model)
+	if len(model) > 0{
+		for i := 0; i < len(model); i++{
+			aux = model[i]
+			salida = append(salida, aux.toRootVehicle())
+		}
+	}
+
+	return salida, err
+
 }
 
 func (p *VehicleService) GetByUserId(userid int) ([]*root.Vehicle, error){

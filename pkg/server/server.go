@@ -16,7 +16,7 @@ type Server struct {
 
 func NewServer(v root.VehicleService) *Server {
 	s := Server{router: mux.NewRouter()}
-	NewVehicleRouter(v, s.newSubrouter("/vehicles"))
+	NewVehicleRouter(v, s.newSubrouter("/"))
 	return &s
 }
 

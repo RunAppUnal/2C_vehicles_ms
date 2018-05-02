@@ -17,13 +17,13 @@ type vehicleRouter struct {
 func NewVehicleRouter(v root.VehicleService, router *mux.Router) *mux.Router {
 	vehicleRouter := vehicleRouter{v}
 
-	router.HandleFunc("", vehicleRouter.createVehicleHandler).Methods("POST")
-	router.HandleFunc("", vehicleRouter.getAllVehicleHandler).Methods("GET")
-  router.HandleFunc("/{id}", vehicleRouter.getVehicleByIdHandler).Methods("GET")
-	router.HandleFunc("/find_vehicle/{plate}", vehicleRouter.getVehicleByPlateHandler).Methods("GET")
-	router.HandleFunc("/my_vehicles/{user_id}", vehicleRouter.getVehicleByUserIdHandler).Methods("GET")
-	router.HandleFunc("/{id}", vehicleRouter.deleteVehicleHandler).Methods("DELETE")
-	router.HandleFunc("/{id}", vehicleRouter.updateVehicleHandler).Methods("PUT")
+	router.HandleFunc("/vehicles/", vehicleRouter.createVehicleHandler).Methods("POST")
+	router.HandleFunc("/vehicles/", vehicleRouter.getAllVehicleHandler).Methods("GET")
+  router.HandleFunc("/vehicles/{id}/", vehicleRouter.getVehicleByIdHandler).Methods("GET")
+	router.HandleFunc("/vehicles/find_vehicle/{plate}/", vehicleRouter.getVehicleByPlateHandler).Methods("GET")
+	router.HandleFunc("/vehicles/my_vehicles/{user_id}/", vehicleRouter.getVehicleByUserIdHandler).Methods("GET")
+	router.HandleFunc("/vehicles/{id}/", vehicleRouter.deleteVehicleHandler).Methods("DELETE")
+	router.HandleFunc("/vehicles/{id}/", vehicleRouter.updateVehicleHandler).Methods("PUT")
 	return router
 }
 
@@ -33,13 +33,13 @@ func (vr *vehicleRouter) createVehicleHandler(w http.ResponseWriter, r *http.Req
 		Error(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
-  err = vr.vehicleService.CreateVehicle(&vehicle)
+  salida, err := vr.vehicleService.CreateVehicle(&vehicle)
 	if err != nil {
 		Error(w, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	Json(w, http.StatusOK, err)
+	Json(w, http.StatusOK, salida)
 }
 
 func (vr *vehicleRouter) deleteVehicleHandler(w http.ResponseWriter, r *http.Request) {
@@ -90,6 +90,7 @@ func (vr *vehicleRouter) getAllVehicleHandler(w http.ResponseWriter, r *http.Req
 	}
 
 	Json(w, http.StatusOK, vehicles)
+
 }
 
 func (vr *vehicleRouter) getVehicleByPlateHandler(w http.ResponseWriter, r *http.Request) {
