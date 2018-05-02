@@ -9,6 +9,7 @@ type Favroute struct {
   Polyline3   string        `json:"polyline3"`
   Polyline4   string        `json:"polyline4"`
   Polyline5   string        `json:"polyline5"`
+  Count       int64         `json:"count"`
 }
 
 type FavrouteService interface {

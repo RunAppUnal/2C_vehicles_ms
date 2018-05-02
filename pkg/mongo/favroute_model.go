@@ -16,7 +16,7 @@ type favrouteModel struct {
   Polyline3   string        `bson:"polyline3" json:"polyline3"`
   Polyline4   string        `bson:"polyline4" json:"polyline4"`
   Polyline5   string        `bson:"polyline5" json:"polyline5"`
-
+  Count       int64         `bson:"count" json:"count"`
 }
 
 func favrouteModelIndex() mgo.Index {
@@ -37,7 +37,8 @@ func newFavrouteModel(f *root.Favroute) *favrouteModel {
     Polyline2:     f.Polyline2,
     Polyline3:     f.Polyline3,
     Polyline4:     f.Polyline4,
-    Polyline5:     f.Polyline5}
+    Polyline5:     f.Polyline5,
+    Count:         f.Count}
 }
 
 func updateFavrouteModel(f *root.Favroute) *favrouteModel {
@@ -48,7 +49,8 @@ func updateFavrouteModel(f *root.Favroute) *favrouteModel {
     Polyline2:     f.Polyline2,
     Polyline3:     f.Polyline3,
     Polyline4:     f.Polyline4,
-    Polyline5:     f.Polyline5}
+    Polyline5:     f.Polyline5,
+    Count:         f.Count}
 }
 
 func(f *favrouteModel) toRootFavroute() *root.Favroute {
@@ -60,5 +62,6 @@ func(f *favrouteModel) toRootFavroute() *root.Favroute {
     Polyline2:     f.Polyline2,
     Polyline3:     f.Polyline3,
     Polyline4:     f.Polyline4,
-    Polyline5:     f.Polyline5}
+    Polyline5:     f.Polyline5,
+    Count:         f.Count}
 }
