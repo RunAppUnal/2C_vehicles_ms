@@ -14,7 +14,7 @@ Ejecutar las siguientes instucciones:
 
 3. Iniciar el programa
 
-`docker run --name vehicle-ms -p 6004:6004 vehicle-ms`
+`docker run --name vehicle-ms -p 6005:6005 vehicle-ms`
 
 **Aclaración:** Los comandos se deben ejecutar desde la terminal, en la ruta del proyecto (1. en una terminal y 2.,3. desde otra terminal).
 
