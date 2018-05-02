@@ -80,6 +80,7 @@ func (p *FavrouteService) GetByUserId(userid int) ([]*root.Favroute, error){
 func (p *FavrouteService) UpdateById(id int, v *root.Favroute) (*root.Favroute, error){
 	favroute := updateFavrouteModel(v)
 	favroute.ID = uint64(id)
+	favroute.FavrouteId = uint64(id)
 	err := p.collection.UpdateId(id, &favroute)
 	return favroute.toRootFavroute(), err
 }
