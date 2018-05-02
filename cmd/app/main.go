@@ -16,7 +16,16 @@ func main() {
 
 	//h := crypto.Hash{}
 	u := mongo.NewVehicleService(ms.Copy(), "2C_vehicle_db", "vehicle")
-	s := server.NewServer(u)
+	//s := server.NewServerVehicle(u)
+
+
+	uf := mongo.NewFavrouteService(ms.Copy(), "2C_vehicle_db", "favroute")
+	//sf := server.NewServerFavroute(uf)
+
+	s := server.NewServer(u, uf)
 
 	s.Start()
+	//log.Println("--------++++++++++")
+	//sf.Start()
+
 }

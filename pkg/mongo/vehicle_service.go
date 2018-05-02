@@ -95,8 +95,6 @@ func (p *VehicleService) GetByUserId(userid int) ([]*root.Vehicle, error){
 	return salida, err
 }
 
-
-
 func (p *VehicleService) UpdateById(id int, v *root.Vehicle) (*root.Vehicle, error){
 	vehicle := updateVehicleModel(v)
 	vehicle.ID = uint64(id)

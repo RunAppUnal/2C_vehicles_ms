@@ -14,11 +14,25 @@ type Server struct {
 	router *mux.Router
 }
 
-func NewServer(v root.VehicleService) *Server {
+func NewServer(v root.VehicleService, f root.FavrouteService) *Server {
+	s := Server{router: mux.NewRouter()}
+	NewVehicleRouter(v, s.newSubrouter("/"))
+	NewFavrouteRouter(f, s.newSubrouter("/"))
+	return &s
+}
+
+
+/*func NewServerVehicle(v root.VehicleService) *Server {
 	s := Server{router: mux.NewRouter()}
 	NewVehicleRouter(v, s.newSubrouter("/"))
 	return &s
 }
+
+func NewServerFavroute(v root.FavrouteService) *Server {
+	s := Server{router: mux.NewRouter()}
+	NewFavrouteRouter(v, s.newSubrouter("/"))
+	return &s
+}*/
 
 func (s *Server) Start() {
 	log.Println("Listening on port 6005")
