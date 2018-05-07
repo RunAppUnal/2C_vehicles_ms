@@ -24,7 +24,7 @@ func (p *VehicleService) CreateVehicle(v *root.Vehicle) (*root.Vehicle, error) {
 	vehicle := newVehicleModel(v)
 
 	// connect AutoIncrement to collection "vehicles"
-	session, err := mgo.Dial("192.168.99.101:27017")
+	session, err := mgo.Dial("192.168.99.102:27017")
 	if err != nil {
 		log.Fatal(err)
 	}
